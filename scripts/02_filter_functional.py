@@ -8,4 +8,6 @@ functional = df[df["Consequence"].isin([
     "stop_gained"
 ])]
 
+functional.to_csv("results/functional_variants.csv", index=False)
+
 print(functional)
