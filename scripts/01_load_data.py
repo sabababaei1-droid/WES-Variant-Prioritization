@@ -1,5 +1,5 @@
 import pandas as pd
 
-df = pd.read_csv("data/example_variants.csv")
+df = pd.read_csv("data/variants.csv")
 
 print(df)
