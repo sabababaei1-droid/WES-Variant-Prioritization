@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv("data/variants.csv")
+df = pd.read_csv("results/high_cadd_variants.csv")
 
 candidates = df[
     (df["Consequence"].isin([
@@ -8,8 +8,8 @@ candidates = df[
         "frameshift",
         "stop_gained"
     ]))
-    & (df["gnomAD_AF"] <= 0.01)
-    & (df["CADD"] >= 20)
 ]
+
+candidates.to_csv("results/candidate_variants.csv", index=False)
 
 print(candidates)
