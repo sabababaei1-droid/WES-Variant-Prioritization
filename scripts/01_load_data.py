@@ -1,3 +1,5 @@
 import pandas as pd
 
-print("WES Variant Prioritization")
+df = pd.read_csv("data/example_variants.csv")
+
+print(df)
