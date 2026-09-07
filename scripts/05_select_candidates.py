@@ -6,6 +6,6 @@ candidates = df[
     df["ClinVar_Significance"] == "Pathogenic"
 ]
 
-candidates.to_csv("results/candidate_variants.csv", index=False)
+candidates.to_csv("results/04_candidate_variants.csv", index=False)
 
 print(candidates)
