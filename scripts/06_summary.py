@@ -15,8 +15,23 @@ candidate_percent = (len(candidates) / initial) * 100
 print("Variant Prioritization Summary")
 print("------------------------------")
 
-print("Initial variants:", initial)
-print("Functional variants:", len(functional), "(", functional_percent, "%)")
-print("Rare variants:", len(rare), "(", rare_percent, "%)")
-print("High-CADD variants:", len(high_cadd), "(", high_cadd_percent, "%)")
-print("Candidate variants:", len(candidates), "(", candidate_percent, "%)")
+
+print(f"Functional variants: {len(functional)} ({functional_percent:.0f}%)")
+print(f"Rare variants: {len(rare)} ({rare_percent:.0f}%)")
+print(f"High-CADD variants: {len(high_cadd)} ({high_cadd_percent:.0f}%)")
+print(f"Candidate variants: {len(candidates)} ({candidate_percent:.0f}%)")
+
+#or.......
+
+#print("Initial variants:", initial)==Initial variants: 5
+#print("Functional variants:", len(functional), "(", functional_percent, "%)")==Functional variants: 4 ( 80.0 %)
+#print("Rare variants:", len(rare), "(", rare_percent, "%)")==Rare variants: 3 ( 60.0 %)
+#print("High-CADD variants:", len(high_cadd), "(", high_cadd_percent, "%)")==High-CADD variants: 2 ( 40.0 %)
+#print("Candidate variants:", len(candidates), "(", candidate_percent, "%)")== Candidate variants: 1 ( 20.0 %)
+
+
+
+
+
+
+
