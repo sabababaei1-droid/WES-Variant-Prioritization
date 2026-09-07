@@ -1,6 +1,5 @@
-Gene,Variant,Consequence,gnomAD_AF,CADD
-GENE_A,c.101A>G,missense,0.0001,27.6
-GENE_B,c.205T>C,missense,0.0002,18.3
-GENE_C,c.450del,frameshift,0.0,31.2
-GENE_D,c.722G>A,missense,0.004,22.1
-GENE_E,c.900C>T,stop_gained,0.0,35.0
+Gene,Variant,Consequence,gnomAD_AF,CADD,ClinVar_Significance
+GENE_B,c.205T>C,missense,0.02,25.0,VUS
+GENE_C,c.450del,missense,0.0001,18.3,VUS
+GENE_D,c.722G>A,missense,0.0002,22.1,VUS
+GENE_E,c.900C>T,stop_gained,0.0001,35.0,Pathogenic
