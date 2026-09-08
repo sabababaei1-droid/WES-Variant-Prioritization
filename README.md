@@ -4,7 +4,7 @@ A Python-based workflow for filtering and prioritizing annotated variants from w
 
 ## Project Overview
 
-This project demonstrates a reproducible workflow for variant filtering and prioritization using Python and pandas.
+This project demonstrates a reproducible workflow for variant filtering and prioritization using Python, pandas, and Matplotlib.
 
 The workflow includes:
 
@@ -13,6 +13,7 @@ The workflow includes:
 * CADD-based prioritization
 * Candidate variant selection based on ClinVar significance
 * Summary of filtering results
+* CADD score visualization
 
 ## Workflow
 
@@ -28,6 +29,8 @@ CADD prioritization
 Candidate variant selection
         ↓
 Summary of filtering results
+        ↓
+CADD visualization
 ```
 
 ## Filtering Criteria
@@ -38,6 +41,27 @@ The workflow applies the following criteria:
 * **Population frequency:** gnomAD allele frequency ≤ 0.01
 * **CADD score:** ≥ 20
 * **Clinical significance:** ClinVar significance = Pathogenic
+
+## CADD Visualization
+
+The project includes a Python script for visualizing CADD scores of prioritized variants.
+
+The visualization includes:
+
+* CADD score for each prioritized variant
+* A horizontal threshold line at CADD = 20
+* Numerical labels for individual CADD scores
+* High-resolution PNG output
+
+The visualization script is:
+
+```text
+scripts/07_cadd_visualization.py
+```
+
+The script uses Matplotlib to generate the visualization.
+
+> The patient-level input file used to generate the visualization is not included in this repository.
 
 ## Project Structure
 
@@ -56,7 +80,8 @@ WES-Variant-Prioritization/
 │   ├── 03_filter_frequency.py
 │   ├── 04_prioritize_cadd.py
 │   ├── 05_select_candidates.py
-│   └── 06_summary.py
+│   ├── 06_summary.py
+│   └── 07_cadd_visualization.py
 └── README.md
 ```
 
@@ -64,10 +89,18 @@ WES-Variant-Prioritization/
 
 * Python 3
 * pandas
+* Matplotlib
+* openpyxl
+
+Install the required Python packages with:
+
+```bash
+py -m pip install pandas matplotlib openpyxl
+```
 
 ## How to Run
 
-Run the scripts in the following order:
+Run the main filtering workflow in the following order:
 
 ```bash
 py scripts/01_load_data.py
@@ -86,4 +119,18 @@ results/candidate_variants.csv
 
 The summary script reports the number and percentage of variants remaining after each filtering step.
 
-> This repository is an educational implementation. Patient-level data and unpublished research results are not included.
+The CADD visualization can be generated using:
+
+```bash
+py scripts/07_cadd_visualization.py
+```
+
+> The visualization script requires the corresponding local input Excel file. Patient-level data are not included in this repository.
+
+## Data Privacy
+
+Patient-level data and unpublished research results are not included in this repository.
+
+The files used for patient-specific analysis remain local and are not uploaded to GitHub.
+
+> This repository is an educational implementation demonstrating a reproducible approach to variant filtering, prioritization, and visualization using Python.
