@@ -1,37 +1,71 @@
+
+from pathlib import Path
+
 import pandas as pd
 
-initial = len(pd.read_csv("data/variants.csv"))
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+INPUT_FILE = PROJECT_ROOT / "results" / "05_inheritance_review.csv"
+OUTPUT_DIR = PROJECT_ROOT / "results"
 
-functional = pd.read_csv("results/01_functional_variants.csv")
-rare = pd.read_csv("results/02_rare_variants.csv")
-high_cadd = pd.read_csv("results/03_high_cadd_variants.csv")
-candidates = pd.read_csv("results/04_candidate_variants.csv")
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-functional_percent = (len(functional) / initial) * 100
-rare_percent = (len(rare) / initial) * 100
-high_cadd_percent = (len(high_cadd) / initial) * 100
-candidate_percent = (len(candidates) / initial) * 100
+if not INPUT_FILE.exists():
+    raise FileNotFoundError(
+        f"Input file not found: {INPUT_FILE}\n"
+        "Run 06_inheritance_review.py first."
+    )
 
-print("Variant Prioritization Summary")
-print("------------------------------")
+df = pd.read_csv(INPUT_FILE, na_values=["NA"])
 
+print("=" * 50)
+print("EDUCATIONAL WES VARIANT PRIORITIZATION SUMMARY")
+print("=" * 50)
 
-print(f"Functional variants: {len(functional)} ({functional_percent:.0f}%)")
-print(f"Rare variants: {len(rare)} ({rare_percent:.0f}%)")
-print(f"High-CADD variants: {len(high_cadd)} ({high_cadd_percent:.0f}%)")
-print(f"Candidate variants: {len(candidates)} ({candidate_percent:.0f}%)")
+print(f"\nTotal variants reviewed: {len(df)}")
 
-#or.......
+if "Consequence" in df.columns:
+    print("\nVariants by consequence:")
+    print(df["Consequence"].value_counts(dropna=False).to_string())
 
-#print("Initial variants:", initial)==Initial variants: 5
-#print("Functional variants:", len(functional), "(", functional_percent, "%)")==Functional variants: 4 ( 80.0 %)
-#print("Rare variants:", len(rare), "(", rare_percent, "%)")==Rare variants: 3 ( 60.0 %)
-#print("High-CADD variants:", len(high_cadd), "(", high_cadd_percent, "%)")==High-CADD variants: 2 ( 40.0 %)
-#print("Candidate variants:", len(candidates), "(", candidate_percent, "%)")== Candidate variants: 1 ( 20.0 %)
+if "ClinVar_Category" in df.columns:
+    print("\nVariants by ClinVar category:")
+    print(df["ClinVar_Category"].value_counts(dropna=False).to_string())
 
+if "CADD_Priority" in df.columns:
+    print("\nVariants by CADD priority:")
+    print(df["CADD_Priority"].value_counts(dropna=False).to_string())
 
+if "Inheritance_Review" in df.columns:
+    print("\nVariants by inheritance review:")
+    print(
+        df["Inheritance_Review"]
+        .value_counts(dropna=False)
+        .to_string()
+    )
 
+# Save a compact summary table
+summary_rows = []
 
+for column in [
+    "Consequence",
+    "ClinVar_Category",
+    "CADD_Priority",
+    "Inheritance_Review",
+]:
+    if column in df.columns:
+        counts = df[column].value_counts(dropna=False)
 
+        for category, count in counts.items():
+            summary_rows.append({
+                "Annotation": column,
+                "Category": str(category),
+                "Count": int(count),
+            })
 
+summary_df = pd.DataFrame(summary_rows)
+OUTPUT_FILE = OUTPUT_DIR / "06_variant_summary.csv"
+summary_df.to_csv(OUTPUT_FILE, index=False)
 
+print(f"\nSummary table saved to: {OUTPUT_FILE}")
+print("\nReminder: these are synthetic educational data,")
+print("not clinical classifications or diagnostic results.")
