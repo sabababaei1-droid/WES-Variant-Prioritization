@@ -1,5 +1,10 @@
-Gene,Variant,Consequence,gnomAD_AF,CADD,ClinVar_Significance
-GENE_B,c.205T>C,missense,0.02,25.0,VUS
-GENE_C,c.450del,missense,0.0001,18.3,VUS
-GENE_D,c.722G>A,missense,0.0002,22.1,VUS
-GENE_E,c.900C>T,stop_gained,0.0001,35.0,Pathogenic
+Gene,Variant,Consequence,gnomAD_AF,CADD,ClinVar_Significance,Zygosity,Inheritance,SIFT,PolyPhen2
+GENE_B,c.205T>C,missense,0.02,25.0,VUS,Het,AD,0.04,0.92
+GENE_C,c.450del,frameshift,0.0001,18.3,VUS,Hom,AR,,
+GENE_D,c.722G>A,missense,0.0002,22.1,VUS,Het,AD,0.01,0.98
+GENE_E,c.900C>T,stop_gained,0.0001,35.0,Pathogenic,Het,AD,,
+GENE_F,c.310G>A,missense,0.0005,24.2,Likely pathogenic,Het,AD,0.02,0.88
+GENE_G,c.120_121del,frameshift,0.0003,29.1,Conflicting classifications,Het,AD,,
+GENE_H,c.555A>G,missense,0.0008,16.5,Uncertain significance,Hom,AR,0.2,0.15
+GENE_I,c.800C>T,stop_gained,0.015,32.0,Pathogenic,Het,AD,,
+GENE_J,c.410G>T,missense,0.0002,19.7,Not provided,Hom,AR,0.03,0.81

@@ -1,0 +1,13 @@
+Annotation,Category,Count
+Consequence,missense,4
+Consequence,frameshift,2
+Consequence,stop_gained,1
+ClinVar_Category,VUS,3
+ClinVar_Category,Pathogenic,1
+ClinVar_Category,Likely pathogenic,1
+ClinVar_Category,Conflicting classifications,1
+ClinVar_Category,Not provided,1
+CADD_Priority,Higher,4
+CADD_Priority,Lower,3
+Inheritance_Review,Potentially compatible with AD,4
+Inheritance_Review,Compatible: homozygous with AR,3
